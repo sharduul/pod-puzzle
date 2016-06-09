@@ -21,9 +21,14 @@
 
         $stateProvider
             .state('space', {
-                url: "/space/:spaceId",
-                templateUrl: "templates/editCustomer.html",
-                controller: "editCustomerController as editCustomer"
+                url: "/space",
+                templateUrl: "space/space.html",
+                //controller: "spaceController as space"
+            })
+            .state('space.overview', {
+                url: "/:spaceId",
+                templateUrl: "space/overview/spaceOverview.html",
+                //controller: "spaceOverviewController as spaceOverview"
             })
             .state('not-authorized', {
                 url: "/not-authorized",

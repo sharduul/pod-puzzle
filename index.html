@@ -11,7 +11,7 @@
 </head>
  
 <body ng-app='app'>
-    <!-- this will load the header -->
+    <!-- this will load the main view -->
     <div ui-view></div>
 
     <!-- Placed Javascript at the end of the document so the pages load faster -->
@@ -25,7 +25,8 @@
 
     <!-- app's custom js  -->
     <script src="app.js"></script>
-    <script src="controllers/spaceController.js"></script>
+    <script src="space/spaceController.js"></script>
+    <script src="space/overview/spaceOverviewController.js"></script>
     <script src="services/spaceResource.js"></script>
     <script src="services/spaceService.js"></script>
 </body>
