@@ -132,12 +132,19 @@
         $document.bind("keyup", function(event) {
 
             $timeout(function(){
+                // down key
                 if(vm.searchEnabled && event.keyCode == 40){
-                    vm.highlightIndex = vm.highlightIndex + 1 <= maxIndex ? vm.highlightIndex + 1 : 0;
+                    vm.highlightIndex = vm.highlightIndex + 1 < maxIndex ? vm.highlightIndex + 1 : 0;
+                    shiftFocus();
                 }
+
+                // up key
                 else if(vm.searchEnabled && event.keyCode == 38){
-                    vm.highlightIndex = vm.highlightIndex - 1 >= 0 ? vm.highlightIndex - 1 : maxIndex;
+                    vm.highlightIndex = vm.highlightIndex - 1 >= 0 ? vm.highlightIndex - 1 : maxIndex - 1;
+                    shiftFocus();
                 }
+
+                // enter key
                 else if(vm.searchEnabled && event.keyCode == 13){
 
                     var highlightedOrganization = _.find(vm.filteredOrganizations, { highlightIndex: vm.highlightIndex });
@@ -159,6 +166,27 @@
             });
 
         });
+
+
+        // this function takes care of making highlighted element always visible by scrolling correctly
+        function shiftFocus(){
+            var wrapperHeight = $('.search-results-wrapper').height();
+            var elementOffSet = $('#' + vm.highlightIndex).offset().top;
+            var currentScrollTop = $('.search-results-wrapper').scrollTop();
+
+            // while going down
+            // scroll down to make item visible
+            if(elementOffSet > wrapperHeight){
+                $('.search-results-wrapper').scrollTop(wrapperHeight % elementOffSet);
+            }
+
+            // while going up
+            // if element is before the current scroll top- scroll to the element's offset
+            else if(elementOffSet < currentScrollTop){
+                $('.search-results-wrapper').scrollTop(elementOffSet);
+            }
+
+        }
 
 
 	}
