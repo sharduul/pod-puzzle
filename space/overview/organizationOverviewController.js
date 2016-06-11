@@ -9,11 +9,14 @@
 
 	function OrganizationOverviewController(spaceResource, $state){
 		var vm = this;
-
         vm.organizationSummary = null;
+
         (function(){
 
+            // get all the spaces and organizations
             spaceResource.space().get(function(data){
+
+                // find the organization which is being viewed
                 var org = _.find(data, { id: +$state.params.organizationId });
                 if(org){
                     vm.organizationSummary = {

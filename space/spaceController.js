@@ -33,8 +33,6 @@
                 vm.filteredOrganizations = organizations;
 
                 indexifyResults();
-
-                console.log(data);
             });
 
         })();

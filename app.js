@@ -34,10 +34,6 @@
                 url: "organization/:organizationId",
                 templateUrl: "space/overview/organizationOverview.html",
                 controller: "organizationOverviewController as organizationOverviewCtrl"
-            })
-            .state('not-authorized', {
-                url: "/not-authorized",
-                templateUrl: "templates/notAuthorized.html"
             });
 
         // if none of the above states are matched, use this as the fallback

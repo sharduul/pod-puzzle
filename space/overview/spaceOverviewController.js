@@ -10,16 +10,15 @@
 	function SpaceOverviewController(spaceResource, $state){
 		var vm = this;
 
-        vm.organizations = [];
         vm.spaceSummary = null;
 
         (function(){
 
+            // get all the spaces and organizations
             spaceResource.space().get(function(data){
-                vm.organizations = data;
+                _.forEach(data, function(organization){
 
-                _.forEach(vm.organizations, function(organization){
-
+                    // find the space within organization which is being viewed
                     var space = _.find(organization.spaces, { id: +$state.params.spaceId });
                     if(space){
                         vm.spaceSummary = {

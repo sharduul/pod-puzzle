@@ -16,7 +16,7 @@
 			return $resource('assets/spaces.json', { }, {
 				get: { method: 'GET', isArray: true },
 
-                // kept here for to show that in real world application this will call the RESTful API
+                // kept here to show that in real world application this will call the RESTful API
                 update: { method: 'PUT' },
 				save: { method: 'POST' },
 				remove: { method: 'DELETE' }
