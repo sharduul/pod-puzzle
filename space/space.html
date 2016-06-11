@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-xs-12 col-md-12 col-lg-12">
             <nav class="navbar navbar-full"  ng-init="search = false">
-                <button class="btn btn-primary navbar-brand search-actions"
+                <button class="btn btn-primary navbar-brand search search-actions"
                         type="button" data-toggle="dropdown"
                         ng-click="search = true" ng-show="!search">&#9776; Choose Workspace</button>
 
-                <div class="input-group search-actions" ng-show="search">
+                <div class="input-group search search-actions" ng-show="search">
                     <div class="input-group-btn">
                         <button class="btn btn-primary dropdown-toggle navbar-brand" type="button">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -19,9 +19,9 @@
                         </button>
                     </div>
                 </div>
-                <a class="navbar-brand" href="#">Ct</a>
+                <a href="#" class="citrix-logo"><img ng-src="assets/images/citrix-logo.png" /></a>
 
-                <ul class="list-group" ng-show="search">
+                <ul class="list-group search search-results" ng-show="search">
                     <li class="list-group-item" ng-repeat="organization in space.organizations">
                         <span>{{ organization.name }}</span>
                         <ul class="list-group" ng-show="search">

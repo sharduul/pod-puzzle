@@ -2,13 +2,38 @@
 
 nav{
   background-color: @nav-background-color;
+
+  .citrix-logo{
+    float: left;
+    margin-left: 20px;
+
+    img{
+      height: 50px;
+    }
+
+  }
+}
+
+.search{
+  width: 300px;
 }
 
 .search-actions{
   background-color: darken(@nav-background-color, 10%);
 }
 
-
-.input-group{
-  width: 200px;
+.search-results{
+  position: absolute;
+  z-index: 1;
+  top: 51px;
 }
+
+.search.input-group{
+  float: left;
+}
+
+
+//
+//.input-group{
+//  width: 200px;
+//}

@@ -1,9 +1,24 @@
 nav {
     background-color: #4d91bf;
 }
+nav .citrix-logo {
+    float: left;
+    margin-left: 20px;
+}
+nav .citrix-logo img {
+    height: 50px;
+}
+.search {
+    width: 300px;
+}
 .search-actions {
     background-color: #3976a0;
 }
-.input-group {
-    width: 200px;
+.search-results {
+    position: absolute;
+    z-index: 1;
+    top: 51px;
+}
+.search.input-group {
+    float: left;
 }
