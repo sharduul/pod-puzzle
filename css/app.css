@@ -22,6 +22,9 @@ nav .glyphicon {
     z-index: 1;
     top: 51px;
 }
+.search-results .highlightedText {
+    background-color: yellow;
+}
 .search.input-group {
     float: left;
 }
