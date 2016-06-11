@@ -21,14 +21,19 @@
 
         $stateProvider
             .state('space', {
-                url: "/space",
+                url: "/",
                 templateUrl: "space/space.html",
                 controller: "spaceController as spaceCtrl"
             })
-            .state('space.overview', {
-                url: "/:spaceId",
+            .state('space.spaceOverview', {
+                url: "space/:spaceId",
                 templateUrl: "space/overview/spaceOverview.html",
-                controller: "spaceOverviewController as spaceOverview"
+                controller: "spaceOverviewController as spaceOverviewCtrl"
+            })
+            .state('space.organizationOverview', {
+                url: "organization/:organizationId",
+                templateUrl: "space/overview/organizationOverview.html",
+                controller: "organizationOverviewController as organizationOverviewCtrl"
             })
             .state('not-authorized', {
                 url: "/not-authorized",
@@ -36,7 +41,7 @@
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/space');
+        $urlRouterProvider.otherwise('/');
     }
 
 })();

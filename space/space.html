@@ -30,7 +30,7 @@
                         <ul class="list-group">
                             <li class="list-group-item" ng-repeat="space in organization.spaces">
                                 <a href="#" id="{{ $parent.$index }}-{{ $index }}"
-                                   ui-sref="space.overview({spaceId: {{ space.id }} })" ui-sref-opts="{reload: true}"
+                                   ui-sref="space.spaceOverview({spaceId: {{ space.id }} })" ui-sref-opts="{reload: true}"
                                    ng-bind-html="spaceCtrl.highlight(space.name, spaceCtrl.searchText)"
                                    ng-class="{ highlightItem: space.highlightIndex == spaceCtrl.highlightIndex }">{{ space.name }}</a>
                             </li>

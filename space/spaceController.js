@@ -102,7 +102,7 @@
         // this index will be tracked for highlighting and navigating to that item
         function indexifyResults(){
             vm.highlightIndex = 0;
-            
+
             var index = 0;
             _.forEach(vm.filteredOrganizations, function(organizationItem){
                 organizationItem.highlightIndex = index++;
@@ -140,7 +140,8 @@
 
                     var highlightedOrganization = _.find(vm.filteredOrganizations, { highlightIndex: vm.highlightIndex });
                     if(highlightedOrganization){
-                        console.log(highlightedOrganization);
+                        reset();
+                        $state.go('space.organizationOverview', { organizationId: highlightedOrganization.id });
                     }
                     else{
                         var allFilteredSpaces = _.chain(vm.filteredOrganizations).pluck('spaces').flatten().value();
@@ -148,7 +149,7 @@
 
                         if(highlightedSpace){
                             reset();
-                            $state.go('space.overview', { spaceId: highlightedSpace.id });
+                            $state.go('space.spaceOverview', { spaceId: highlightedSpace.id });
                         }
 
                     }
