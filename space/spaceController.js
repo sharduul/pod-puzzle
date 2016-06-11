@@ -16,9 +16,9 @@
 
         // declare vm objects here
         vm.searchText = "";
+        vm.searchEnabled = false;
         vm.filteredOrganizations = [];
         vm.highlightIndex = 0;
-        vm.searchEnabled = false;
 
         // declare functions here
         vm.filter = filter;
@@ -35,7 +35,7 @@
                 indexifyResults();
             });
 
-		})();
+        })();
 
 
         // resets variables when search view is closed
@@ -93,14 +93,13 @@
 
             }
 
-
             indexifyResults();
             vm.highlightIndex = 0;
         }
 
-
+        // give each recode an index
+        // this index will be tracked for highlighting and navigating to that item
         function indexifyResults(){
-
             var index = 0;
             _.forEach(vm.filteredOrganizations, function(organizationItem){
                 organizationItem.highlightIndex = index++;
@@ -110,7 +109,6 @@
             });
 
             maxIndex = index;
-
         }
 
 
@@ -124,22 +122,18 @@
         }
 
 
-        // bind
+        // bind key press events
+        // event handler for up, down and enter keys
         $document.bind("keyup", function(event) {
 
-            if(!vm.searchEnabled){
-                console.log("asdfas");
-                return;
-            }
-
             $timeout(function(){
-                if(event.keyCode == 40){
+                if(vm.searchEnabled && event.keyCode == 40){
                     vm.highlightIndex = vm.highlightIndex + 1 <= maxIndex ? vm.highlightIndex + 1 : 0;
                 }
-                else if(event.keyCode == 38){
+                else if(vm.searchEnabled && event.keyCode == 38){
                     vm.highlightIndex = vm.highlightIndex - 1 >= 0 ? vm.highlightIndex - 1 : maxIndex;
                 }
-                else if(event.keyCode == 13){
+                else if(vm.searchEnabled && event.keyCode == 13){
 
                     var highlightedOrganization = _.find(vm.filteredOrganizations, { highlightIndex: vm.highlightIndex });
                     if(highlightedOrganization){
@@ -150,17 +144,15 @@
                         var highlightedSpace = _.find(allFilteredSpaces, { highlightIndex: vm.highlightIndex });
 
                         if(highlightedSpace){
-                            $state.go('space.overview', { spaceId: highlightedSpace.id }, {reload: true});
+                            reset();
+                            $state.go('space.overview', { spaceId: highlightedSpace.id });
                         }
 
                     }
-
                 }
-
             });
 
         });
-
 
 
 	}
