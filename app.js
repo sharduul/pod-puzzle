@@ -23,7 +23,7 @@
             .state('space', {
                 url: "/space",
                 templateUrl: "space/space.html",
-                controller: "spaceController as space"
+                controller: "spaceController as spaceCtrl"
             })
             .state('space.overview', {
                 url: "/:spaceId",
