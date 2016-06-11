@@ -13,36 +13,26 @@
                         </span>
                     </div>
                     <input class="search-box" type="text" class="form-control"
-                           ng-model="spaceCtrl.searchText" ng-minlength="1" aria-label="search" ng-keyup="spaceCtrl.filter()">
+                           ng-model="spaceCtrl.searchText" ng-minlength="1" aria-label="search" ng-keyup="spaceCtrl.filter($event)">
                     <div class="input-group-btn">
                         <button class="btn btn-primary dropdown-toggle navbar-brand" type="button" ng-click="search = false; spaceCtrl.reset()">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
                     </div>
                 </div>
-                <a href="#" class="citrix-logo"><img ng-src="assets/images/citrix-logo.png" /></a>
 
-                <!--<ul class="list-group search search-results" ng-show="search">-->
-                    <!--<li class="list-group-item" ng-repeat="organization in spaceCtrl.organizations" ng-show="filtered.length > 0">-->
-                        <!--<span ng-bind-html="spaceCtrl.highlight(organization.name, spaceCtrl.searchText)">{{ organization.name }}</span>-->
-                        <!--<ul class="list-group" ng-show="search">-->
-                            <!--<li class="list-group-item" ng-repeat="space in filtered = (organization.spaces | filter: { name: spaceCtrl.searchText })">-->
-                                <!--<a href="#"-->
-                                   <!--ui-sref="space.overview({spaceId: {{ space.id }} })" ui-sref-opts="{reload: true}"-->
-                                   <!--ng-bind-html="spaceCtrl.highlight(space.name, spaceCtrl.searchText)">{{ space.name }}</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
-                <!--</ul>-->
+                <a href="#" class="citrix-logo"><img ng-src="assets/images/citrix-logo.png" /></a>
 
                 <ul class="list-group search search-results" ng-show="search">
                     <li class="list-group-item" ng-repeat="organization in spaceCtrl.filteredOrganizations">
-                        <span ng-bind-html="spaceCtrl.highlight(organization.name, spaceCtrl.searchText)">{{ organization.name }}</span>
+                        <span ng-bind-html="spaceCtrl.highlight(organization.name, spaceCtrl.searchText)"
+                                ng-class="{ highlightItem: organization.highlightIndex == spaceCtrl.highlightIndex }">{{ organization.name }}</span>
                         <ul class="list-group" ng-show="search">
                             <li class="list-group-item" ng-repeat="space in organization.spaces">
-                                <a href="#"
+                                <a href="#" id="{{ $parent.$index }}-{{ $index }}"
                                    ui-sref="space.overview({spaceId: {{ space.id }} })" ui-sref-opts="{reload: true}"
-                                   ng-bind-html="spaceCtrl.highlight(space.name, spaceCtrl.searchText)">{{ space.name }}</a>
+                                   ng-bind-html="spaceCtrl.highlight(space.name, spaceCtrl.searchText)"
+                                   ng-class="{ highlightItem: space.highlightIndex == spaceCtrl.highlightIndex }">{{ space.name }}</a>
                             </li>
                         </ul>
                     </li>

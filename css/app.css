@@ -25,6 +25,9 @@ nav .glyphicon {
 .search-results .highlightedText {
     background-color: yellow;
 }
+.search-results .highlightItem {
+    background-color: gray;
+}
 .search.input-group {
     float: left;
 }
