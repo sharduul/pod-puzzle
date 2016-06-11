@@ -1,3 +1,10 @@
+@font-x-large: 25px;
+@font-large: 21px;
+@font-normal: 18px;
+@font-small: 15px;
+@font-x-small: 12px;
+
+
 @nav-background-color: #4D91BF;
 
 nav{
@@ -11,6 +18,10 @@ nav{
       height: 50px;
     }
 
+  }
+
+  .glyphicon{
+    color: white;
   }
 }
 
@@ -30,6 +41,16 @@ nav{
 
 .search.input-group{
   float: left;
+
+  // make background transparent
+  input{
+    background-color: rgba(0,0,0,0) !important;
+    border: none !important;
+    width: 200px;
+    height: 50px;
+    outline: none; // remove the blue glow
+    font-size: @font-x-large;
+  }
 }
 
 

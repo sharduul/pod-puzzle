@@ -8,6 +8,9 @@ nav .citrix-logo {
 nav .citrix-logo img {
     height: 50px;
 }
+nav .glyphicon {
+    color: white;
+}
 .search {
     width: 300px;
 }
@@ -21,4 +24,12 @@ nav .citrix-logo img {
 }
 .search.input-group {
     float: left;
+}
+.search.input-group input {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: none !important;
+    width: 200px;
+    height: 50px;
+    outline: none;
+    font-size: 25px;
 }
