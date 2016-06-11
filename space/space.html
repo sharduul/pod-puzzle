@@ -1,4 +1,4 @@
-<div class="container">
+<div class="">
     <div class="row">
         <div class="col-xs-12 col-md-12 col-lg-12">
             <nav class="navbar navbar-full">
@@ -27,13 +27,14 @@
             <div class="search search-results-wrapper">
                 <ul class="list-group" ng-show="spaceCtrl.searchEnabled">
                     <li class="list-group-item" ng-repeat="organization in spaceCtrl.filteredOrganizations">
-                        <div ng-class="{ highlightItem: organization.highlightIndex == spaceCtrl.highlightIndex }">
+                        <div id="org{{ organization.id }}" class="organization-item" ng-class="{ highlightItem: organization.highlightIndex == spaceCtrl.highlightIndex }">
+                            <img ng-src="{{ organization.image.thumbnail_link  }}" />
                             <a href="#" ui-sref="space.organizationOverview({organizationId: {{ organization.id }} })" ui-sref-opts="{reload: true}"
                             ng-bind-html="spaceCtrl.highlight(organization.name, spaceCtrl.searchText)">{{ organization.name }}</a>
                         </div>
                         <ul class="list-group">
                             <li class="list-group-item" ng-repeat="space in organization.spaces">
-                                <div ng-class="{ highlightItem: space.highlightIndex == spaceCtrl.highlightIndex }">
+                                <div id="space{{ space.id }}" ng-class="{ highlightItem: space.highlightIndex == spaceCtrl.highlightIndex }">
                                     <a href="#" ui-sref="space.spaceOverview({spaceId: {{ space.id }} })" ui-sref-opts="{reload: true}"
                                        ng-bind-html="spaceCtrl.highlight(space.name, spaceCtrl.searchText)">{{ space.name }}</a>
                                 </div>

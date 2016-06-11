@@ -4,6 +4,9 @@ body {
     margin: 0;
     padding: 0;
 }
+* {
+    border-radius: 0 !important;
+}
 nav {
     background-color: #4d91bf;
 }
@@ -22,6 +25,7 @@ nav .glyphicon {
 }
 .search-actions {
     background-color: #3976a0;
+    text-align: left;
 }
 .search-results-wrapper {
     max-height: 80vh;
@@ -40,9 +44,20 @@ nav .glyphicon {
 .search-results-wrapper .highlightItem {
     background-color: lightgray;
 }
+.search-results-wrapper .list-group {
+    margin-bottom: 0px;
+}
 .search-results-wrapper .list-group-item {
     border: none;
     padding: 1px 15px;
+}
+.search-results-wrapper .list-group-item img {
+    height: 40px;
+    margin-right: 10px;
+}
+.search-results-wrapper .list-group-item div.organization-item {
+    height: 50px;
+    font-size: 21px;
 }
 .search-results-wrapper .list-group-item div {
     padding-left: 10px;
@@ -68,8 +83,4 @@ nav .glyphicon {
     height: 50px;
     outline: none;
     font-size: 25px;
-}
-
-.list-group{
-    margin-bottom: 0px;
 }
