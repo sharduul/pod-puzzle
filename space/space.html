@@ -1,21 +1,21 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-12 col-lg-12">
-            <nav class="navbar navbar-full"  ng-init="search = false">
+            <nav class="navbar navbar-full">
                 <button class="btn btn-primary navbar-brand search search-actions"
                         type="button" data-toggle="dropdown"
-                        ng-click="search = true" ng-show="!search">&#9776; Choose Workspace</button>
+                        ng-click="spaceCtrl.searchEnabled = true" ng-show="!spaceCtrl.searchEnabled">&#9776; Choose Workspace</button>
 
-                <div class="input-group search search-actions" ng-show="search">
+                <div class="input-group search search-actions" ng-show="spaceCtrl.searchEnabled">
                     <div class="input-group-btn">
                         <span class="navbar-brand">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         </span>
                     </div>
                     <input class="search-box" type="text" class="form-control"
-                           ng-model="spaceCtrl.searchText" ng-minlength="1" aria-label="search" ng-keyup="spaceCtrl.filter($event)">
+                           ng-model="spaceCtrl.searchText" ng-minlength="1" aria-label="search" ng-keyup="$event.keyCode != 40 && $event.keyCode != 38 && $event.keyCode != 13 && spaceCtrl.filter($event)">
                     <div class="input-group-btn">
-                        <button class="btn btn-primary dropdown-toggle navbar-brand" type="button" ng-click="search = false; spaceCtrl.reset()">
+                        <button class="btn btn-primary dropdown-toggle navbar-brand" type="button" ng-click="spaceCtrl.reset()">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
                     </div>
@@ -23,11 +23,11 @@
 
                 <a href="#" class="citrix-logo"><img ng-src="assets/images/citrix-logo.png" /></a>
 
-                <ul class="list-group search search-results" ng-show="search">
+                <ul class="list-group search search-results" ng-show="spaceCtrl.searchEnabled">
                     <li class="list-group-item" ng-repeat="organization in spaceCtrl.filteredOrganizations">
                         <span ng-bind-html="spaceCtrl.highlight(organization.name, spaceCtrl.searchText)"
                                 ng-class="{ highlightItem: organization.highlightIndex == spaceCtrl.highlightIndex }">{{ organization.name }}</span>
-                        <ul class="list-group" ng-show="search">
+                        <ul class="list-group">
                             <li class="list-group-item" ng-repeat="space in organization.spaces">
                                 <a href="#" id="{{ $parent.$index }}-{{ $index }}"
                                    ui-sref="space.overview({spaceId: {{ space.id }} })" ui-sref-opts="{reload: true}"

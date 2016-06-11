@@ -5,9 +5,9 @@
 		.module('space-controllers', [])
 		.controller('spaceController', SpaceController);
 
-    SpaceController.$inject = ['spaceResource', '$sce', '$document', '$timeout'];
+    SpaceController.$inject = ['spaceResource', '$sce', '$document', '$timeout', '$state'];
 
-	function SpaceController(spaceResource, $sce, $document, $timeout){
+	function SpaceController(spaceResource, $sce, $document, $timeout, $state){
 
         // declare private variables here
         var vm = this;
@@ -18,6 +18,7 @@
         vm.searchText = "";
         vm.filteredOrganizations = [];
         vm.highlightIndex = 0;
+        vm.searchEnabled = false;
 
         // declare functions here
         vm.filter = filter;
@@ -39,21 +40,18 @@
 
         // resets variables when search view is closed
         function reset(){
+            vm.searchEnabled = false;
             vm.searchText = "";
             vm.filteredOrganizations = organizations;
+            vm.highlightIndex = 0;
         }
 
 
         // function takes care of filtering logic
         function filter(event){
 
-            if(event.keyCode == 40 || event.keyCode == 38){
-                return;
-            }
-
             vm.searchText = vm.searchText.toLowerCase();
             vm.filteredOrganizations = [];
-
 
             // if there is not search text
             // show all the organizations and spaces
@@ -125,7 +123,14 @@
             return $sce.trustAsHtml(text.replace(new RegExp(search, 'gi'), '<span class="highlightedText">$&</span>'));
         }
 
+
+        // bind
         $document.bind("keyup", function(event) {
+
+            if(!vm.searchEnabled){
+                console.log("asdfas");
+                return;
+            }
 
             $timeout(function(){
                 if(event.keyCode == 40){
@@ -134,6 +139,24 @@
                 else if(event.keyCode == 38){
                     vm.highlightIndex = vm.highlightIndex - 1 >= 0 ? vm.highlightIndex - 1 : maxIndex;
                 }
+                else if(event.keyCode == 13){
+
+                    var highlightedOrganization = _.find(vm.filteredOrganizations, { highlightIndex: vm.highlightIndex });
+                    if(highlightedOrganization){
+                        console.log(highlightedOrganization);
+                    }
+                    else{
+                        var allFilteredSpaces = _.chain(vm.filteredOrganizations).pluck('spaces').flatten().value();
+                        var highlightedSpace = _.find(allFilteredSpaces, { highlightIndex: vm.highlightIndex });
+
+                        if(highlightedSpace){
+                            $state.go('space.overview', { spaceId: highlightedSpace.id }, {reload: true});
+                        }
+
+                    }
+
+                }
+
             });
 
         });
