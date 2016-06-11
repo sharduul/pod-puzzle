@@ -26,7 +26,7 @@
                         <span>{{ organization.name }}</span>
                         <ul class="list-group" ng-show="search">
                             <li class="list-group-item" ng-repeat="space in organization.spaces">
-                                <a href="#">{{ space.name }}</a>
+                                <a href="#" ui-sref="space.overview({spaceId: {{ space.id }} })" ui-sref-opts="{reload: true}">{{ space.name }}</a>
                             </li>
                         </ul>
                     </li>

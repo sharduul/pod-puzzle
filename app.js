@@ -28,7 +28,7 @@
             .state('space.overview', {
                 url: "/:spaceId",
                 templateUrl: "space/overview/spaceOverview.html",
-                //controller: "spaceOverviewController as spaceOverview"
+                controller: "spaceOverviewController as spaceOverview"
             })
             .state('not-authorized', {
                 url: "/not-authorized",

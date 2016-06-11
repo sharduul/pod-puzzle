@@ -15,16 +15,10 @@
 
 		(function(){
 
-            console.log("asdfa");
-
             spaceResource.space().get(function(data){
-
                 vm.organizations = data;
-
                 console.log(data);
-
             });
-
 
 		})();
 
