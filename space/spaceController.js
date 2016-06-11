@@ -30,7 +30,7 @@
             // get all the organizations and spaces
             spaceResource.space().get(function(data){
                 organizations = data;
-                vm.filteredOrganizations = data;
+                vm.filteredOrganizations = organizations;
 
                 indexifyResults();
             });
@@ -43,7 +43,8 @@
             vm.searchEnabled = false;
             vm.searchText = "";
             vm.filteredOrganizations = organizations;
-            vm.highlightIndex = 0;
+
+            indexifyResults();
         }
 
 
@@ -71,7 +72,7 @@
                     // if search does not match the organization name
                     // match individual spaces
                     else{
-                        var tempOrg = _.clone(organizationItem);
+                        var tempOrg = _.cloneDeep(organizationItem);
                         tempOrg.spaces = [];
                         var match = false;
 
@@ -94,12 +95,14 @@
             }
 
             indexifyResults();
-            vm.highlightIndex = 0;
+
         }
 
         // give each recode an index
         // this index will be tracked for highlighting and navigating to that item
         function indexifyResults(){
+            vm.highlightIndex = 0;
+            
             var index = 0;
             _.forEach(vm.filteredOrganizations, function(organizationItem){
                 organizationItem.highlightIndex = index++;
