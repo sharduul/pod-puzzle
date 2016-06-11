@@ -2,12 +2,12 @@
 	'use strict';
 
 	angular
-		.module('cust-controllers', [])
-		.controller('customerController', CustomerController);
+		.module('space-controllers')
+		.controller('spaceOverviewController', SpaceOverviewController);
 
-    CustomerController.$inject = ['customerResource', '$uibModal', '$state', 'customerService'];
+    SpaceOverviewController.$inject = ['customerResource', '$uibModal', '$state', 'customerService'];
 
-	function CustomerController(customerResource, $uibModal, $state, customerService){
+	function SpaceOverviewController(customerResource, $uibModal, $state, customerService){
 		var vm = this;
 
         vm.searchFilter = { firstName: "", lastName: ""};

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngMessages'])
+        .module('app', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngMessages', 'space-controllers', 'space-services'])
         .config(Config)
         .run(Run);
 
@@ -23,7 +23,7 @@
             .state('space', {
                 url: "/space",
                 templateUrl: "space/space.html",
-                //controller: "spaceController as space"
+                controller: "spaceController as space"
             })
             .state('space.overview', {
                 url: "/:spaceId",
@@ -36,7 +36,7 @@
             });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/not-authorized');
+        $urlRouterProvider.otherwise('/space');
     }
 
 })();
