@@ -10,12 +10,16 @@
 	function SpaceController(spaceResource){
 		var vm = this;
 
+        vm.organizations = [];
+
 
 		(function(){
 
             console.log("asdfa");
 
             spaceResource.space().get(function(data){
+
+                vm.organizations = data;
 
                 console.log(data);
 

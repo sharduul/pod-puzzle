@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngMessages', 'space-controllers', 'space-services'])
+        .module('app', ['ui.router', 'ngResource', 'ngMessages', 'space-controllers', 'space-services'])
         .config(Config)
         .run(Run);
 

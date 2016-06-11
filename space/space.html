@@ -1,9 +1,36 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-12 col-lg-12">
-            <nav class="navbar navbar-full">
-                <button class="navbar-brand" type="button">&#9776; Choose Workspace</button>
+            <nav class="navbar navbar-full"  ng-init="search = false">
+                <button class="btn btn-primary navbar-brand"
+                        type="button" data-toggle="dropdown"
+                        ng-click="search = true" ng-show="!search">&#9776; Choose Workspace</button>
+
+                <div class="input-group" ng-show="search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary dropdown-toggle navbar-brand" type="button">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <input class="search-box" type="text" class="form-control" aria-label="...">
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary dropdown-toggle navbar-brand" type="button" ng-click="search = false">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
                 <a class="navbar-brand" href="#">Ct</a>
+
+                <ul class="list-group" ng-show="search">
+                    <li class="list-group-item" ng-repeat="organization in space.organizations">
+                        <span>{{ organization.name }}</span>
+                        <ul class="list-group" ng-show="search">
+                            <li class="list-group-item" ng-repeat="space in organization.spaces">
+                                <a href="#">{{ space.name }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </nav>
         </div>
     </div>
