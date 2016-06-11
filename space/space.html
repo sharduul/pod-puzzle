@@ -22,11 +22,13 @@
                 </div>
 
                 <a href="#" class="citrix-logo"><img ng-src="assets/images/citrix-logo.png" /></a>
+            </nav>
 
-                <ul class="list-group search search-results" ng-show="spaceCtrl.searchEnabled">
+            <div class="search search-results-wrapper">
+                <ul class="list-group" ng-show="spaceCtrl.searchEnabled">
                     <li class="list-group-item" ng-repeat="organization in spaceCtrl.filteredOrganizations">
-                        <span ng-bind-html="spaceCtrl.highlight(organization.name, spaceCtrl.searchText)"
-                                ng-class="{ highlightItem: organization.highlightIndex == spaceCtrl.highlightIndex }">{{ organization.name }}</span>
+                            <span ng-bind-html="spaceCtrl.highlight(organization.name, spaceCtrl.searchText)"
+                                  ng-class="{ highlightItem: organization.highlightIndex == spaceCtrl.highlightIndex }">{{ organization.name }}</span>
                         <ul class="list-group">
                             <li class="list-group-item" ng-repeat="space in organization.spaces">
                                 <a href="#" id="{{ $parent.$index }}-{{ $index }}"
@@ -37,7 +39,7 @@
                         </ul>
                     </li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </div>
 

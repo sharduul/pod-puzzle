@@ -4,8 +4,9 @@
 @font-small: 15px;
 @font-x-small: 12px;
 
-
 @nav-background-color: #4D91BF;
+
+html, body { height:100%; margin:0; padding:0; }
 
 nav{
   background-color: @nav-background-color;
@@ -33,10 +34,16 @@ nav{
   background-color: darken(@nav-background-color, 10%);
 }
 
-.search-results{
+.search-results-wrapper{
+  max-height: 80vh;
+  overflow-y: scroll;
+  display: inline-block;
   position: absolute;
   z-index: 1;
   top: 51px;
+  border-top-width: 0px;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 12px 10px rgba(0, 0, 0, .2);
 
   .highlightedText{
     background-color: yellow;
@@ -45,7 +52,12 @@ nav{
   .highlightItem{
     background-color: gray;
   }
+
+  .list-group-item{
+    border: none;
+  }
 }
+
 
 .search.input-group{
   float: left;
